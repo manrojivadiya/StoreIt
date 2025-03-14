@@ -190,8 +190,9 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
                   <Image
                     src={actionItem.icon}
                     alt={actionItem.label}
-                    width={30}
-                    height={30}
+                    width={20}
+                    height={15}
+                    className="ms-1"
                   />
                   {<OpenWhatsApp fileId={file.bucketFileId} />}
                 </>

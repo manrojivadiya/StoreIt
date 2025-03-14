@@ -44,7 +44,7 @@ export const actionsDropdownItems = [
   },
   {
     label: "WhatsApp",
-    icon: "/assets/icons/icons8-whatsapp.svg",
+    icon: "/assets/icons/whatsapp-logo-4454.svg",
     value: "whatsapp",
   },
   {
