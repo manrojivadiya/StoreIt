@@ -30,6 +30,7 @@ import {
 } from "@/lib/actions/file.actions";
 import { usePathname } from "next/navigation";
 import { FileDetails, ShareInput } from "@/components/ActionsModalContent";
+import OpenWhatsApp from "./OpenWhatsApp";
 
 const ActionDropdown = ({ file }: { file: Models.Document }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -163,7 +164,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
 
                 if (
                   ["rename", "share", "delete", "details"].includes(
-                    actionItem.value,
+                    actionItem.value
                   )
                 ) {
                   setIsModalOpen(true);
@@ -184,6 +185,16 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
                   />
                   {actionItem.label}
                 </Link>
+              ) : actionItem.value === "whatsapp" ? (
+                <>
+                  <Image
+                    src={actionItem.icon}
+                    alt={actionItem.label}
+                    width={30}
+                    height={30}
+                  />
+                  {<OpenWhatsApp fileId={file.bucketFileId} />}
+                </>
               ) : (
                 <div className="flex items-center gap-2">
                   <Image

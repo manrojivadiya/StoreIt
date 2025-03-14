@@ -38,9 +38,14 @@ export const actionsDropdownItems = [
     value: "details",
   },
   {
-    label: "Share",
+    label: "Email",
     icon: "/assets/icons/share.svg",
     value: "share",
+  },
+  {
+    label: "WhatsApp",
+    icon: "/assets/icons/share.svg",
+    value: "whatsapp",
   },
   {
     label: "Download",
