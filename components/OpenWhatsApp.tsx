@@ -11,7 +11,7 @@ const OpenWhatsApp = ({ fileId }: { fileId: string }) => {
   return (
     <button
       onClick={shareOnWhatsApp}
-      className="py-2 bg-green-500 text-white rounded-lg p-0 m-0 bg-transparent text-black no-underline"
+      className="py-2 rounded-lg p-0 m-0 bg-transparent text-black no-underline"
     >
       WhatsApp
     </button>
