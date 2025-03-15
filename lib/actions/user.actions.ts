@@ -14,7 +14,7 @@ const getUserByEmail = async (email: string) => {
   const result = await databases.listDocuments(
     appwriteConfig.databaseId,
     appwriteConfig.usersCollectionId,
-    [Query.equal("email", [email])],
+    [Query.equal("email", [email])]
   );
 
   return result.total > 0 ? result.documents[0] : null;
@@ -61,7 +61,7 @@ export const createAccount = async ({
         email,
         avatar: avatarPlaceholderUrl,
         accountId,
-      },
+      }
     );
   }
 
@@ -102,7 +102,7 @@ export const getCurrentUser = async () => {
     const user = await databases.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.usersCollectionId,
-      [Query.equal("accountId", result.$id)],
+      [Query.equal("accountId", result.$id)]
     );
 
     if (user.total <= 0) return null;
@@ -110,6 +110,24 @@ export const getCurrentUser = async () => {
     return parseStringify(user.documents[0]);
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const updateUserFullName = async (userId: string, fullName: string) => {
+  try {
+    const { databases } = await createSessionClient();
+
+    const updatedUser = await databases.updateDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.usersCollectionId,
+      userId, // Document ID
+      { fullName } // Updating only fullName
+    );
+
+    return updatedUser;
+  } catch (error) {
+    console.error("Error updating full name:", error);
+    throw new Error("Failed to update full name");
   }
 };
 

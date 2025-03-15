@@ -5,14 +5,10 @@ import Image from "next/image";
 import { navItems } from "@/constants";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { useUser } from "@/context/UserContext";
 
-interface Props {
-  fullName: string;
-  avatar: string;
-  email: string;
-}
-
-const Sidebar = ({ fullName, avatar, email }: Props) => {
+const Sidebar = () => {
+  const { user } = useUser();
   const pathname = usePathname();
 
   return (
@@ -42,7 +38,7 @@ const Sidebar = ({ fullName, avatar, email }: Props) => {
               <li
                 className={cn(
                   "sidebar-nav-item",
-                  pathname === url && "shad-active",
+                  pathname === url && "shad-active"
                 )}
               >
                 <Image
@@ -52,7 +48,7 @@ const Sidebar = ({ fullName, avatar, email }: Props) => {
                   height={24}
                   className={cn(
                     "nav-icon",
-                    pathname === url && "nav-icon-active",
+                    pathname === url && "nav-icon-active"
                   )}
                 />
                 <p className="hidden lg:block">{name}</p>
@@ -70,20 +66,21 @@ const Sidebar = ({ fullName, avatar, email }: Props) => {
         className="w-full"
       />
 
-      <div className="sidebar-user-info">
+      <Link href="/profile" className="sidebar-user-info">
         <Image
-          src={avatar}
+          src={user?.avatar || "/default-avatar.png"}
           alt="Avatar"
           width={44}
           height={44}
           className="sidebar-user-avatar"
         />
         <div className="hidden lg:block">
-          <p className="subtitle-2 capitalize">{fullName}</p>
-          <p className="caption">{email}</p>
+          <p className="subtitle-2 capitalize">{user?.fullName || "User"}</p>
+          <p className="caption">{user?.email}</p>
         </div>
-      </div>
+      </Link>
     </aside>
   );
 };
+
 export default Sidebar;
