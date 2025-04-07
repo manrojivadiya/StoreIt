@@ -22,7 +22,6 @@ const Profile = () => {
     try {
       await updateUserFullName(user.$id, fullName);
 
-      // ✅ Update user context so Sidebar updates automatically
       setUser({ ...user, fullName });
     } catch (error) {
       alert("Failed to update name");

@@ -8,7 +8,7 @@ import { FormattedDateTime } from "@/components/FormattedDateTime";
 import { Thumbnail } from "@/components/Thumbnail";
 import { Separator } from "@/components/ui/separator";
 import { getFiles, getTotalSpaceUsed } from "@/lib/actions/file.actions";
-import { convertFileSize, getUsageSummary } from "@/lib/utils";
+import { convertFileSize, formatDateTime, getUsageSummary } from "@/lib/utils";
 
 const Dashboard = async () => {
   const [files, totalSpace] = await Promise.all([
@@ -80,10 +80,11 @@ const Dashboard = async () => {
                 <div className="recent-file-details">
                   <div className="flex flex-col gap-1">
                     <p className="recent-file-name">{file.name}</p>
-                    <FormattedDateTime
-                      date={file.$createdAt}
+                    <p className="caption">{formatDateTime(file.$updatedAt)}</p>
+                    {/* <FormattedDateTime
+                      date={formatDateTime(file.$updatedAt)}
                       className="caption"
-                    />
+                    /> */}
                   </div>
                   <ActionDropdown file={file} />
                 </div>
